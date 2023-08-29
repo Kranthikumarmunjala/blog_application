@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from data_details.models import User,Blog,Commands
+from data_details.models import User,Blog,Comments
 
 # Create your views here.
 @api_view(['POST'])
@@ -128,7 +128,7 @@ def delete_blog(request):
             }
             return Response(context,status=status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
-def commands(request):
+def comments(request):
     user=request.POST.get('user',None)
     if user is None:
         context={
@@ -137,12 +137,12 @@ def commands(request):
         return Response(context,status=status.HTTP_400_BAD_REQUEST)
     else:
         try:
-            new_record=Commands.objects.create(
+            new_record=Comments.objects.create(
                 user=user
             )
             new_record.save()
             context={
-                'message':'successfully added command',
+                'message':'successfully added comment',
                 'data':{
                     'blog_id':new_record.id,
                     'user':new_record.user

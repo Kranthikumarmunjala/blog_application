@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from data_details.views import user,add_blog,list_blog,update_blog,delete_blog,commands
+from data_details.views import user,add_blog,list_blog,update_blog,delete_blog,comments
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,5 @@ urlpatterns = [
     path('list_blog/',list_blog,name='list_blog'),
     path('update_blog/',update_blog,name='update_blog'),
     path('delete_blog/',delete_blog,name='delete_blog'),
-    path('commands/',commands,name='commands')
+    path('comments/',comments,name='comments')
 ]
